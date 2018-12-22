@@ -10,3 +10,8 @@ after_success:
   - docker build -t msevugan/multi-server ./server
   - docker build -t msevugan/multi-nginx ./nginx
   - docker build -t msevugan/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push msevugan/multi-client
+  - docker push msevugan/multi-nginx
+  - docker push msevugan/multi-server
+  - docker push msevugan/multi-worker
